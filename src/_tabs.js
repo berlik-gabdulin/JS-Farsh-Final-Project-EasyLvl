@@ -1,13 +1,13 @@
-function tabs() {
-	let tab = document.querySelectorAll('.glazing_block a'),
-		info = document.querySelector('.glazing_slider'),
-		tabContent = document.querySelectorAll('.glazing .row');
+function tabs(tabItem, tabWrap, content, activeClass) {
+	let tab = document.querySelectorAll(tabItem),
+		info = document.querySelector(tabWrap),
+		tabContent = document.querySelectorAll(content);
 
 	let hideTabContent = (a) => {
 		for (let i = a; i < tabContent.length; i++) {
 			tabContent[i].classList.remove('show');
 			tabContent[i].classList.add('hide');
-			tab[i].classList.remove('active');
+			tab[i].classList.remove(activeClass);
 		}
 	};
 	hideTabContent(1);
@@ -16,16 +16,16 @@ function tabs() {
 		if (tabContent[b].classList.contains('hide')) {
             tabContent[b].classList.remove('hide');
 			tabContent[b].classList.add('show');
-			tab[b].classList.add('active');
+			tab[b].classList.add(activeClass);
         }
 	};
 
 	info.addEventListener('click', function (event) {
 		let target = event.target;
-		if (target) {
+		if (target || target.children) {
 			for (let i = 0; i < tab.length; i++) {
-				tab[i].classList.remove('active');
-				if (target == tab[i]) {
+				tab[i].classList.remove(activeClass);
+				if (target == tab[i] || target == tab[i].children[0]) {
 					console.log('Tab link ' + i);
 					hideTabContent(0);
 					showTabContent(i);

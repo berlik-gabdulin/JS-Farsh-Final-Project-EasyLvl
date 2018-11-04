@@ -1,38 +1,61 @@
-function timer() {
+function timer(date) {
     setInterval(function () {
-        let hoursWrp = document.querySelector('span.hours'),
-            minutesWrp = document.querySelector('span.minutes'),
-            secondsWrp = document.querySelector('span.seconds');
+        let daysWrp = document.querySelector('span.days'),
+        hoursWrp = document.querySelector('span.hours'),
+        minutesWrp = document.querySelector('span.minutes'),
+        secondsWrp = document.querySelector('span.seconds');
 
-        let stopDate = ((new Date("2018-10-30T18:00:00")) / 1000).toFixed(),
-            nowDate = (Date.now() / 1000).toFixed(),
-            remain = stopDate - nowDate,
-            sec = remain,
-            min = sec / 60,
-            hours = min / 60;
+        let stopDate = ((new Date(date)) / 1000).toFixed(),
+        nowDate = (Date.now() / 1000).toFixed(),
+        remain = stopDate - nowDate,
+        sec = remain,
+        min = sec / 60,
+        hours = min / 60,
+        days = hours / 24;
 
         if (remain > 0) {
-            let remainH = Math.floor(hours % 24),
-                remainM = Math.floor(min % 60),
-                remainS = Math.floor(sec % 60);
+            let remainH = String(Math.floor(hours % 24)),
+            remainM = String(Math.floor(min % 60)),
+            remainS = String(Math.floor(sec % 60)),
+            remainD = String(Math.floor(days));
 
-            if (remainH < 10) {
+            if (Number(remainH) < 10) {
                 remainH = '0' + remainH;
             }
-            if (remainM < 10) {
+            if (Number(remainM) < 10) {
                 remainM = '0' + remainM;
             }
-            if (remainS < 10) {
+            if (Number(remainS) < 10) {
                 remainS = '0' + remainS;
             }
+            if (Number(remainD) < 10) {
+                remainD = '0' + remainD;
+            };
 
-            hoursWrp.textContent = remainH;
-            minutesWrp.textContent = remainM;
-            secondsWrp.textContent = remainS;
+            function timerInnerDom(remainTime, wrapper) {
+                wrapper.innerHTML = '';
+                let remainArr = remainTime.split(''),
+                tempNode;
+                for (let i = 0; i < remainArr.length; i++) {
+                    tempNode = document.createElement('span');
+                    tempNode.textContent = remainArr[i];
+                    wrapper.appendChild(tempNode);
+                }
+            };
+
+            timerInnerDom(remainD, daysWrp);
+            timerInnerDom(remainH, hoursWrp);
+            timerInnerDom(remainM, minutesWrp);
+            timerInnerDom(remainS, secondsWrp);
+            
+            // hoursWrp.textContent = remainH;
+            // minutesWrp.textContent = remainM;
+            // secondsWrp.textContent = remainS;
         } else {
-            hoursWrp.textContent = '00';
-            minutesWrp.textContent = '00';
-            secondsWrp.textContent = '00';
+            // daysWrp.textContent = '00';
+            // hoursWrp.textContent = '00';
+            // minutesWrp.textContent = '00';
+            // secondsWrp.textContent = '00';
             document.getElementById('timer').style.cssText = 'opacity: .7; color: #c5c5c5;';
         }
 

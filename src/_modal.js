@@ -1,21 +1,37 @@
-function modal(openBtn, modalWrapper, close) {
-    let modalBtn = document.querySelector(openBtn),
-    	modalTarget = document.querySelector(modalWrapper),
-    	closeBtn = document.querySelector(close);
+function modal(openBtn, modalWrapper, formWrapper, close) {
+	let modalBtn = document.getElementsByClassName(openBtn),
+	modalTarget = document.getElementsByClassName(modalWrapper)[0],
+	form = modalTarget.getElementsByClassName(formWrapper)[0],
+	closeBtn = modalTarget.getElementsByClassName(close)[0];
 
-    modalBtn.addEventListener('click', function(event) {
-    	console.log("Horay!!!");
-    	let target = event.target;
-    	if (target) {
-    		modalTarget.classList.add('show');
-    	};
-    })
-    closeBtn.addEventListener('click', function(event) {
-    	let target = event.target;
-    	if (target || target.children) {
-    		modalTarget.classList.remove('show');
-    	};
-    })
+	for (let i = 0; i < modalBtn.length; i++) {
+		modalBtn[i].addEventListener('click', function(event) {
+			event.preventDefault();
+			let target = event.target;
+			if (target) {
+				modalTarget.classList.add('show');
+			};
+		})
+	}
+
+	modalTarget.addEventListener('click', function(event) {
+		event.preventDefault();
+		let target = event.target;
+
+		for (let i = 0; i < target.children.length; i++) {
+			if (target == modalTarget && target != form.children[i]) {
+				modalTarget.classList.remove('show');
+			}
+		}
+
+		if (close !== '') {
+			for (let i = 0; i < closeBtn.children.length; i++) {
+				if (target == closeBtn.children[i]) {
+					modalTarget.classList.remove('show');
+				}
+			}
+		}
+	})
 }
 
 module.exports = modal;

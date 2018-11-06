@@ -3,8 +3,8 @@ window.addEventListener('DOMContentLoaded', function () {
 
 	let tabs = require('./_tabs'),
 		timer = require('./_timer'),
-		modal = require('./_modal');
-		// form = require('./_form'),
+		modal = require('./_modal'),
+		form = require('./_form');
 		// slider = require('./_slider'),
 		// calc = require('./_calc');
 
@@ -15,7 +15,7 @@ window.addEventListener('DOMContentLoaded', function () {
 	modal('phone_link', 'popup', 'popup_form', 'popup_close', 60000);
 	modal('popup_calc_btn', 'popup_calc', 'popup_calc_content', '', '');
 	modal('popup_engineer_btn', 'popup_engineer', 'popup_content', 'popup_close', '');
-	// form();
+	form('.form');
 	// slider();
 	// calc();
 	

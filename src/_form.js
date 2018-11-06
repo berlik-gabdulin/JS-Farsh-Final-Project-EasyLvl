@@ -6,9 +6,7 @@ function form(formClass) {
 		failure: "Что-то пошло не так..."
 	},
 	form = document.querySelectorAll(formClass),
-	input = document.getElementsByTagName('input'),
-	statusMessage = document.createElement('div');
-	statusMessage.classList.add('status');
+	input = document.getElementsByTagName('input');
 
 
 	function getNumber(elem) {
@@ -30,9 +28,12 @@ function form(formClass) {
 		}
 	}
 
-	function sendForm(elem) {
-		for (let i = 0; i < elem.length; i++) {
-			elem = elem[i];
+	function sendForm(form) {
+		for (let i = 0; i < form.length; i++) {
+
+			let elem = form[i],
+			statusMessage = document.createElement('div');
+			statusMessage.classList.add('status');
 			elem.addEventListener('submit', function (event) {
 				event.preventDefault();
 				elem.appendChild(statusMessage);
@@ -57,7 +58,7 @@ function form(formClass) {
 								}
 							}
 						}
-
+						console.log(data);
 						request.send(data);
 					})
 				}
@@ -68,15 +69,15 @@ function form(formClass) {
 							input[i].value = '';
 						}
 						statusMessage.innerHTML = '';
-						document.querySelector('.overlay').style.display = 'none';
-					}, 2000);
+						document.querySelector('.modal_active').classList.remove('show');
+					}, 3000);
 				}
 
 				postData(formData)
 				.then(() => statusMessage.innerHTML = message.loading)
 				.then(() => setTimeout(function() {
 					statusMessage.innerHTML = message.success;
-				}, 1000))
+				}, 2000))
 				.catch(() => statusMessage.innerHTML = message.failure)
 				.then(clearForm());
 			});

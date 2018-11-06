@@ -11,13 +11,14 @@ function modal(openBtn, modalWrapper, formWrapper, close, timer) {
 			let target = event.target;
 			if (target) {
 				modalTarget.classList.add('show');
+				modalTarget.classList.add('modal_active');
 				body.classList.add('modal_opened');
 			};			
 		})
 	}
 
 	modalTarget.addEventListener('click', function(event) {
-		event.preventDefault();
+		// event.preventDefault();
 		let target = event.target;
 
 		for (let i = 0; i < target.children.length; i++) {

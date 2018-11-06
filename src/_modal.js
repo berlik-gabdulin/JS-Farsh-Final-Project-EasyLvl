@@ -1,8 +1,9 @@
-function modal(openBtn, modalWrapper, formWrapper, close) {
+function modal(openBtn, modalWrapper, formWrapper, close, timer) {
 	let modalBtn = document.getElementsByClassName(openBtn),
 	modalTarget = document.getElementsByClassName(modalWrapper)[0],
 	form = modalTarget.getElementsByClassName(formWrapper)[0],
-	closeBtn = modalTarget.getElementsByClassName(close)[0];
+	closeBtn = modalTarget.getElementsByClassName(close)[0],
+	body = document.getElementsByTagName('body')[0];
 
 	for (let i = 0; i < modalBtn.length; i++) {
 		modalBtn[i].addEventListener('click', function(event) {
@@ -10,7 +11,8 @@ function modal(openBtn, modalWrapper, formWrapper, close) {
 			let target = event.target;
 			if (target) {
 				modalTarget.classList.add('show');
-			};
+				body.classList.add('modal_opened');
+			};			
 		})
 	}
 
@@ -32,6 +34,20 @@ function modal(openBtn, modalWrapper, formWrapper, close) {
 			}
 		}
 	})
+
+	function autoOpen() {
+		if (timer > 0) {
+			setTimeout(function() {
+				if (!body.classList.contains('modal_opened')) {
+					modalTarget.classList.add('show');
+					body.classList.add('modal_opened');
+				}
+			}, timer);
+		} 
+	};
+	autoOpen();
+
+
 }
 
 module.exports = modal;

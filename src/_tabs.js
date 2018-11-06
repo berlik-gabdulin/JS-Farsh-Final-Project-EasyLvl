@@ -26,7 +26,7 @@ function tabs(tabItem, tabWrap, content, activeClass) {
 			for (let i = 0; i < tab.length; i++) {
 				tab[i].classList.remove(activeClass);
 				if (target == tab[i] || target == tab[i].children[0]) {
-					console.log('Tab link ' + i);
+					// console.log('Tab link ' + i);
 					hideTabContent(0);
 					showTabContent(i);
 					break;

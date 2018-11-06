@@ -1,42 +1,21 @@
-function modal() {
-    // Модальное окно
+function modal(openBtn, modalWrapper, close) {
+    let modalBtn = document.querySelector(openBtn),
+    	modalTarget = document.querySelector(modalWrapper),
+    	closeBtn = document.querySelector(close);
 
-	class Modal {
-		constructor(modalOpenBtn, modalClsBtn, modalWrp) {
-			this.modalOpenBtn = modalOpenBtn;
-			this.modalClsBtn = modalClsBtn;
-			this.modalWrp = modalWrp;
-		}
-		open() {
-			for (let i = 0; i < modalOpenBtn.length; i++) {
-				modalWrp.style.cssText = 'display: block';
-			}
-		}
-		close() {
-			modalWrp.style.cssText = 'display: none';
-		}
-	}
-
-    let modalOpenBtn = 'description-btn',
-        modalMoreBtn = 'more',
-		modalWrp = document.querySelector('.overlay'),
-		modalClsBtn = document.querySelector('.popup-close');
-
-    let newModal = new Modal(modalOpenBtn, modalClsBtn, modalWrp);
-        moreModal = new Modal(modalMoreBtn, modalClsBtn, modalWrp);
-	
-    function modalOpen(modal, openBtn) {
-        document.querySelector('body').addEventListener('click', function () {
-            let target = event.target;
-            if (target && target.classList.contains(openBtn)) {
-                modal.open();
-            } else if (target == modalClsBtn) {
-                modal.close();
-            }
-        });
-    }
-    modalOpen(newModal, modalOpenBtn);
-    modalOpen(moreModal, modalMoreBtn);
+    modalBtn.addEventListener('click', function(event) {
+    	console.log("Horay!!!");
+    	let target = event.target;
+    	if (target) {
+    		modalTarget.classList.add('show');
+    	};
+    })
+    closeBtn.addEventListener('click', function(event) {
+    	let target = event.target;
+    	if (target || target.children) {
+    		modalTarget.classList.remove('show');
+    	};
+    })
 }
 
 module.exports = modal;

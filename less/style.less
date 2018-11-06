@@ -765,7 +765,8 @@ a, button, input, textarea {
 		transform: translateX(-50%);
 		width: 40rem;
 		padding: 1rem 0.5rem 4rem;
-		background-color: @white;	
+		background-color: @white;
+		overflow: hidden;
 		h2 {
 			margin-bottom: 3rem;
 			font-size: 3rem;
@@ -777,10 +778,25 @@ a, button, input, textarea {
 			margin-bottom: 3rem;
 		}
 		.balcon_icons {
-			margin-bottom: 1rem; 
+			margin-bottom: 1rem;
+			img {
+				-webkit-transition: .3s;
+				-o-transition: .3s;
+				transition: .3s;
+			}
+			.active {
+				img {
+					-webkit-transform: scale(1.2);
+					-ms-transform: scale(1.2);
+					-o-transform: scale(1.2);
+					transform: scale(1.2);
+				}
+			}
 		}
 		.big_img img {
 			display: none;
+			margin-left: auto;
+			margin-right: auto;
 			margin-bottom: 3rem;
 			width: 30rem;
 		}

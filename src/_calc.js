@@ -33,7 +33,6 @@ function calc() {
 						num = '';
 					} else {
 						count.value = num;
-						console.log(count.value);
 					}
 				});
 			}
@@ -67,27 +66,23 @@ function calc() {
 		let target = event.target;
 		if (target || target.tagName == 'a') {
 			dataObj.typeNumber = target.className;
-			console.log(dataObj);
 		}
 	})
 
 	viewType.addEventListener('change', function () {
 		dataObj.windowType = this.options[this.selectedIndex].value;
-		console.log(dataObj);
 	});    
 
 	checkboxWarm.addEventListener('change', function() {
 		if (this.checked == true) {
 			checkboxCold.checked = false;
 			dataObj.profileType = 'Warm';
-			console.log(dataObj);
 		}
 	})
 	checkboxCold.addEventListener('change', function() {
 		if (this.checked == true) {
 			checkboxWarm.checked = false;
 			dataObj.profileType = 'Cold';
-			console.log(dataObj);
 		}
 	})
 
@@ -101,7 +96,6 @@ function calc() {
 		} else {
 			dataObj.width = width.value;
 			dataObj.height = height.value;
-			console.log(dataObj);
 			openModal(modal2);
 			alert.classList.remove('show');
 		}
@@ -115,7 +109,6 @@ function calc() {
 			alert.classList.add('show');
 		} else {
 			dataObj.windowType = viewType.value;
-			console.log(dataObj);
 			openModal(modal3);
 			alert.classList.remove('show');
 		}
@@ -126,7 +119,7 @@ function calc() {
 			openModal(modal1);
 		});
 	}
-	getCount(document.getElementsByClassName('form-control'));
+	getCount(document.querySelectorAll('.popup_calc_content .form-control'));
 
 };
 

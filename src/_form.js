@@ -1,4 +1,4 @@
-function form(formClass) {
+function form(formClass, customData = '') {
 	// Form
 	let message = {
 		loading: "Загрузка...",
@@ -11,7 +11,7 @@ function form(formClass) {
 
 	function getNumber(elem) {
 		for (let i = 0; i < elem.length; i++) {
-			if (elem[i].name == 'user_phone') {
+			if (elem[i].getAttribute('name') == 'user_phone') {
 				let phone = elem[i];
 				phone.addEventListener('input', (event) => {
 					let num = parseInt(phone.value.replace(/\D/g, ""));
@@ -21,7 +21,6 @@ function form(formClass) {
 						num = '';
 					} else {
 						phone.value = "+" + num;
-						// console.log(phone.value);
 					}
 				});
 			}

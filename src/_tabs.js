@@ -21,6 +21,7 @@ function tabs(tabItem, tabWrap, content, activeClass) {
 	};
 
 	info.addEventListener('click', function (event) {
+		event.preventDefault();
 		let target = event.target;
 		if (target || target.children) {
 			for (let i = 0; i < tab.length; i++) {

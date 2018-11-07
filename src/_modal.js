@@ -13,7 +13,7 @@ function modal(openBtn, modalWrapper, formWrapper, close, timer) {
 				modalTarget.classList.add('show');
 				modalTarget.classList.add('modal_active');
 				body.classList.add('modal_opened');
-			};			
+			};
 		})
 	}
 

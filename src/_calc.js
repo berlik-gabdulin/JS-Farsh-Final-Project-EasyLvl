@@ -53,9 +53,13 @@ function calc() {
 
 	function calcModalClose(elem) {
 		elem.addEventListener('click', () => {
-			let modalToClose = document.querySelector('.modal_active');
+			let modalToClose = document.querySelector('.modal_active'),
+			inputObj = document.getElementsByTagName('input');;
 			modalToClose.classList.remove('show');
 			modalToClose.classList.remove('modal_active');
+			for (let i = 0; i < inputObj.length; i++) {
+				inputObj.value = '';
+			}
 			dataObj = {};
 		});
 	}

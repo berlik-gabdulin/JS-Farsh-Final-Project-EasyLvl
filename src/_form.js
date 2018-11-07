@@ -57,15 +57,11 @@ function form(formClass, customData = '') {
 							obj = customData;
 						}
 
-						// console.log(obj);
-
 						formData.forEach((value, key) => {
 							obj[key] = value;
 						});
 
 						let json = JSON.stringify(obj);
-
-						console.log(formData);
 
 						request.onreadystatechange = function () {
 							if (request.readyState < 4) {

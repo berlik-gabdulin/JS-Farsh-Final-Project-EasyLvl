@@ -1,24 +1,23 @@
 function calc() {
 	let width = document.getElementById('width'),
-	height = document.getElementById('height'),
-	area = 0,
-	calcOpen = document.getElementsByClassName('popup_calc_btn'),
-	calcClose = document.querySelector('.popup_calc_close'),
-	calcProfileClose = document.querySelector('.popup_calc_profile_close'),
-	calcEndClose = document.querySelector('.popup_calc_end_close'),
-	modal1 = document.querySelector('.popup_calc'),
-	modal1Sub = document.querySelector('.popup_calc_button'),
-	modal2 = document.querySelector('.popup_calc_profile'),
-	modal2Sub = document.querySelector('.popup_calc_profile_button'),
-	modal3 = document.querySelector('.popup_calc_end'),
-	typeWrp = document.querySelector('.balcon_icons'),
-	viewType = document.getElementById('view_type'),
-	checkboxWarm = document.querySelectorAll('.checkbox')[0],
-	checkboxCold = document.querySelectorAll('.checkbox')[1],
-	dataObj = {},
-	alert = document.createElement('span'),
-	body = document.getElementsByTagName('body')[0],
-	form = require('./_form');
+		height = document.getElementById('height'),
+		calcOpen = document.getElementsByClassName('popup_calc_btn'),
+		calcClose = document.querySelector('.popup_calc_close'),
+		calcProfileClose = document.querySelector('.popup_calc_profile_close'),
+		calcEndClose = document.querySelector('.popup_calc_end_close'),
+		modal1 = document.querySelector('.popup_calc'),
+		modal1Sub = document.querySelector('.popup_calc_button'),
+		modal2 = document.querySelector('.popup_calc_profile'),
+		modal2Sub = document.querySelector('.popup_calc_profile_button'),
+		modal3 = document.querySelector('.popup_calc_end'),
+		typeWrp = document.querySelector('.balcon_icons'),
+		viewType = document.getElementById('view_type'),
+		checkboxWarm = document.querySelectorAll('.checkbox')[0],
+		checkboxCold = document.querySelectorAll('.checkbox')[1],
+		dataObj = {},
+		alert = document.createElement('span'),
+		body = document.getElementsByTagName('body')[0],
+		form = require('./_form');
 	alert.classList.add('message');
 	alert.style.cssText = "display:none; padding: 5px 0";
 
@@ -38,24 +37,25 @@ function calc() {
 				});
 			}
 		}
-	};
+	}
 
 	function openModal(elem) {
-		modalToClose = document.querySelector('.popup_active');
+		let modalToClose = document.querySelector('.modal_active');
 		if (modalToClose !== null && modalToClose !== 'undefined') {
-			document.querySelector('.popup_active').classList.remove('show');
-			document.querySelector('.popup_active').classList.remove('popup_active');
-		};
+			modalToClose.classList.remove('show');
+			modalToClose.classList.remove('modal_active');
+		}
 		elem.getElementsByClassName('text-center')[0].appendChild(alert);
 		elem.classList.add('show');
-		elem.classList.add('popup_active');
+		elem.classList.add('modal_active');
 		body.classList.add('modal_opened');
 	}
 
 	function calcModalClose(elem) {
-		elem.addEventListener('click', function() {
-			document.querySelector('.popup_active').classList.remove('show');
-			document.querySelector('.popup_active').classList.remove('popup_active');
+		elem.addEventListener('click', () => {
+			let modalToClose = document.querySelector('.modal_active');
+			modalToClose.classList.remove('show');
+			modalToClose.classList.remove('modal_active');
 			dataObj = {};
 		});
 	}
@@ -63,31 +63,31 @@ function calc() {
 	calcModalClose(calcProfileClose);
 	calcModalClose(calcEndClose);
 
-	typeWrp.addEventListener('click', function(event) {
+	typeWrp.addEventListener('click', (event) => {
 		let target = event.target;
 		if (target || target.tagName == 'a') {
 			dataObj.typeNumber = target.className;
 		}
-	})
+	});
 
 	viewType.addEventListener('change', function () {
 		dataObj.windowType = this.options[this.selectedIndex].value;
-	});    
+	});
 
-	checkboxWarm.addEventListener('change', function() {
+	checkboxWarm.addEventListener('change', function () {
 		if (this.checked == true) {
 			checkboxCold.checked = false;
 			dataObj.profileType = 'Warm';
 		}
-	})
-	checkboxCold.addEventListener('change', function() {
+	});
+	checkboxCold.addEventListener('change', function () {
 		if (this.checked == true) {
 			checkboxWarm.checked = false;
 			dataObj.profileType = 'Cold';
 		}
-	})
+	});
 
-	modal1Sub.addEventListener('click', function() {
+	modal1Sub.addEventListener('click', () => {
 		if (width.value == '' || height.value == '' || width.value == '0' || height.value == '0') {
 			alert.innerHTML = "Укажите размеры!";
 			alert.classList.add('show');
@@ -101,7 +101,7 @@ function calc() {
 			alert.classList.remove('show');
 		}
 	});
-	modal2Sub.addEventListener('click', function() {
+	modal2Sub.addEventListener('click', () => {
 		if (viewType.value == '') {
 			alert.innerHTML = "Выберите тип остекления!";
 			alert.classList.add('show');
@@ -112,17 +112,18 @@ function calc() {
 			dataObj.windowType = viewType.value;
 			openModal(modal3);
 			alert.classList.remove('show');
-			dataObj = {};
 		}
-	})
+	});
 
 	for (let i = 0; i < calcOpen.length; i++) {
-		calcOpen[i].addEventListener('click', function() {
+		calcOpen[i].addEventListener('click', () => {
 			openModal(modal1);
 		});
 	}
 	getCount(document.querySelectorAll('.popup_calc_content .form-control'));
+
 	form('.popup_calc_end .form', dataObj);
-};
+
+}
 
 module.exports = calc;

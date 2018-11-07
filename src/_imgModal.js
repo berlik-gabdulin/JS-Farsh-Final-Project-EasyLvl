@@ -7,7 +7,7 @@ function imgModal() {
 	body.appendChild(modalWrp);
 
 	for (let i = 0; i < imgOpener.length; i++) {
-		imgOpener[i].addEventListener('click', function(event) {
+		imgOpener[i].addEventListener('click', (event) => {
 			event.preventDefault();
 
 			let imgWrp = document.querySelector('.img_popup_img');
@@ -18,9 +18,9 @@ function imgModal() {
 			imgWrp.src = imgUrl;
 			modalWrp.classList.add('show');
 			body.classList.add('modal_opened');
-		})
+		});
 	}
-	modalWrp.addEventListener('click', function() {
+	modalWrp.addEventListener('click', () => {
 		let target = event.target;
 		for (let i = 0; i < modalWrp.children.length; i++) {
 			if (target == modalWrp && target != modalWrp.children[i]) {
@@ -28,8 +28,7 @@ function imgModal() {
 				body.classList.remove('modal_opened');
 			}
 		}
-	})
-
-};
+	});
+}
 
 module.exports = imgModal;

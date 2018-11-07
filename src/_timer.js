@@ -1,4 +1,16 @@
 function timer(date) {
+
+    function timerInnerDom(remainTime, wrapper) {
+        wrapper.innerHTML = '';
+        let remainArr = remainTime.split(''),
+        tempNode;
+        for (let i = 0; i < remainArr.length; i++) {
+            tempNode = document.createElement('span');
+            tempNode.textContent = remainArr[i];
+            wrapper.appendChild(tempNode);
+        }
+    }
+
     setInterval(function () {
         let daysWrp = document.querySelector('span.days'),
         hoursWrp = document.querySelector('span.hours'),
@@ -30,36 +42,18 @@ function timer(date) {
             }
             if (Number(remainD) < 10) {
                 remainD = '0' + remainD;
-            };
-
-            function timerInnerDom(remainTime, wrapper) {
-                wrapper.innerHTML = '';
-                let remainArr = remainTime.split(''),
-                tempNode;
-                for (let i = 0; i < remainArr.length; i++) {
-                    tempNode = document.createElement('span');
-                    tempNode.textContent = remainArr[i];
-                    wrapper.appendChild(tempNode);
-                }
-            };
+            }
 
             timerInnerDom(remainD, daysWrp);
             timerInnerDom(remainH, hoursWrp);
             timerInnerDom(remainM, minutesWrp);
             timerInnerDom(remainS, secondsWrp);
             
-            // hoursWrp.textContent = remainH;
-            // minutesWrp.textContent = remainM;
-            // secondsWrp.textContent = remainS;
         } else {
-            // daysWrp.textContent = '00';
-            // hoursWrp.textContent = '00';
-            // minutesWrp.textContent = '00';
-            // secondsWrp.textContent = '00';
             document.getElementById('timer').style.cssText = 'opacity: .7; color: #c5c5c5;';
         }
 
     }, 1000);
-};
+}
 
 module.exports = timer;

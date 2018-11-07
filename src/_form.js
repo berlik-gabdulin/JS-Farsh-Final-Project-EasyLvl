@@ -34,7 +34,7 @@ function form(formClass, customData = '') {
 			inputCur = elem.getElementsByTagName('input'),
 			statusMessage = document.createElement('div');
 			statusMessage.classList.add('status');
-			elem.addEventListener('submit', function (event) {
+			elem.addEventListener('submit', (event) => {
 				event.preventDefault();
 				elem.appendChild(statusMessage);
 
@@ -59,9 +59,9 @@ function form(formClass, customData = '') {
 
 						// console.log(obj);
 
-						formData.forEach(function(value, key) {
+						formData.forEach((value, key) => {
 							obj[key] = value;
-						})
+						});
 
 						let json = JSON.stringify(obj);
 
@@ -69,21 +69,21 @@ function form(formClass, customData = '') {
 
 						request.onreadystatechange = function () {
 							if (request.readyState < 4) {
-								resolve()
+								resolve();
 							} else if (request.readyState === 4) {
 								if (request.status == 200) {
-									resolve()
+									resolve();
 								} else {
-									reject()
+									reject();
 								}
 							}
-						}
+						};
 						request.send(json);
-					})
+					});
 				}
 
 				function clearForm() {
-					setTimeout(function () {
+					setTimeout(() => {
 						for (let i = 0; i < input.length; i++) {
 							input[i].value = '';
 						}
@@ -93,12 +93,13 @@ function form(formClass, customData = '') {
 							activeModal.classList.remove('show');
 						}
 						obj = {};
+						dataObj = {};
 					}, 3000);
 				}
 
 				postData(formData)
 				.then(() => statusMessage.innerHTML = message.loading)
-				.then(() => setTimeout(function() {
+				.then(() => setTimeout(() => {
 					statusMessage.innerHTML = message.success;
 				}, 2000))
 				.catch(() => statusMessage.innerHTML = message.failure)
@@ -109,6 +110,6 @@ function form(formClass, customData = '') {
 
 	getNumber(input);
 	sendForm(form);
-};
+}
 
 module.exports = form;

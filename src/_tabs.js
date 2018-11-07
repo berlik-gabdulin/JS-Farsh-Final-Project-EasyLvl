@@ -20,7 +20,7 @@ function tabs(tabItem, tabWrap, content, activeClass) {
         }
 	};
 
-	info.addEventListener('click', function (event) {
+	info.addEventListener('click', (event) => {
 		event.preventDefault();
 		let target = event.target;
 		if (target || target.children) {
@@ -35,6 +35,6 @@ function tabs(tabItem, tabWrap, content, activeClass) {
 			}
 		}
 	});
-};
+}
 
 module.exports = tabs;

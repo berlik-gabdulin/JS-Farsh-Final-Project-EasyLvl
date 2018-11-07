@@ -31,6 +31,7 @@ function form(formClass, customData = '') {
 		for (let i = 0; i < form.length; i++) {
 
 			let elem = form[i],
+			inputCur = elem.getElementsByTagName('input'),
 			statusMessage = document.createElement('div');
 			statusMessage.classList.add('status');
 			elem.addEventListener('submit', function (event) {
@@ -44,7 +45,27 @@ function form(formClass, customData = '') {
 						let request = new XMLHttpRequest();
 
 						request.open('POST', '/server.php');
-						request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+						request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+
+						for (let i = 0; i < inputCur.length; i++) {
+							formData.append(inputCur[i].getAttribute('name'), inputCur[i].value);
+						}
+
+						let obj = {};
+
+						if (customData !== '') {
+							obj = customData;
+						}
+
+						// console.log(obj);
+
+						formData.forEach(function(value, key) {
+							obj[key] = value;
+						})
+
+						let json = JSON.stringify(obj);
+
+						console.log(formData);
 
 						request.onreadystatechange = function () {
 							if (request.readyState < 4) {
@@ -57,8 +78,7 @@ function form(formClass, customData = '') {
 								}
 							}
 						}
-						console.log(data);
-						request.send(data);
+						request.send(json);
 					})
 				}
 
@@ -68,7 +88,11 @@ function form(formClass, customData = '') {
 							input[i].value = '';
 						}
 						statusMessage.innerHTML = '';
-						document.querySelector('.modal_active').classList.remove('show');
+						let activeModal = document.querySelector('.modal_active');
+						if (activeModal !== null) {
+							activeModal.classList.remove('show');
+						}
+						obj = {};
 					}, 3000);
 				}
 

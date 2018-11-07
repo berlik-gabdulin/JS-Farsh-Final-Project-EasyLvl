@@ -15,8 +15,9 @@ window.addEventListener('DOMContentLoaded', function () {
 	modal('phone_link', 'popup', 'popup_form', 'popup_close', 60000);
 	// modal('popup_calc_btn', 'popup_calc', 'popup_calc_content', '', '');
 	modal('popup_engineer_btn', 'popup_engineer', 'popup_content', 'popup_close', '');
-	form('.form');
+	form('.main_form');
+	form('.popup_engineer .form');
+	form('.popup .form');
 	calc();
 	imgModal();
-	
 });

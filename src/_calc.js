@@ -17,7 +17,8 @@ function calc() {
 	checkboxCold = document.querySelectorAll('.checkbox')[1],
 	dataObj = {},
 	alert = document.createElement('span'),
-	body = document.getElementsByTagName('body')[0];
+	body = document.getElementsByTagName('body')[0],
+	form = require('./_form');
 	alert.classList.add('message');
 	alert.style.cssText = "display:none; padding: 5px 0";
 
@@ -120,7 +121,7 @@ function calc() {
 		});
 	}
 	getCount(document.querySelectorAll('.popup_calc_content .form-control'));
-
+	form('.popup_calc_end .form', dataObj);
 };
 
 module.exports = calc;

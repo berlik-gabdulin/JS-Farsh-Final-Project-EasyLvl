@@ -5,8 +5,8 @@ window.addEventListener('DOMContentLoaded', function () {
 		timer = require('./_timer'),
 		modal = require('./_modal'),
 		form = require('./_form'),
-		calc = require('./_calc');
-		// slider = require('./_slider'),
+		calc = require('./_calc'),
+		imgModal = require('./_imgModal');
 
 	tabs('.glazing_block a', '.glazing_slider', '.glazing .row', 'active');
 	tabs('.decoration_item > div', '.decoration_slider', '.decoration_content > .row > div', 'after_click');
@@ -17,6 +17,6 @@ window.addEventListener('DOMContentLoaded', function () {
 	modal('popup_engineer_btn', 'popup_engineer', 'popup_content', 'popup_close', '');
 	form('.form');
 	calc();
-	// slider();
+	imgModal();
 	
 });

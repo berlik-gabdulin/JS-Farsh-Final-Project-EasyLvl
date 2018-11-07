@@ -44,7 +44,7 @@ function form(formClass, customData = '') {
 					return new Promise(function (resolve, reject) {
 						let request = new XMLHttpRequest();
 
-						request.open('POST', '/server.php');
+						request.open('POST', 'server.php');
 						request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
 
 						for (let i = 0; i < inputCur.length; i++) {

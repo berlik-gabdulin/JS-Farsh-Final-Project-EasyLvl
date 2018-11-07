@@ -112,6 +112,7 @@ function calc() {
 			dataObj.windowType = viewType.value;
 			openModal(modal3);
 			alert.classList.remove('show');
+			dataObj = {};
 		}
 	})
 
